@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
 
 // a) Abstract class Vehicle
-abstract class Vehicle {
-  // c) Encapsulated variable
-  int _speed = 0;
-
-  void setSpeed(int speed) {
-    _speed = speed;
-  }
-
-  void move(); // Abstract method
-}
-
-// b) Subclass Car
-class Car extends Vehicle {
-  @override
-  void move() {
-    print("The car is moving at $_speed km/h");
-  }
-}
-
-// d) Main function
 void main() {
-  Car myCar = Car();
-  myCar.setSpeed(80);
-  myCar.move();
+  List<Map<String, dynamic>> students = [
+    {"name": "Alice", "scores": [85, 90, 78]},
+    {"name": "Bob", "scores": [88, 76, 95]},
+    {"name": "Charlie", "scores": [90, 92, 85]}
+  ];
+  Map<String, double> studentAverages = {};
+  for (var student in students) {
+    String name = student["name"];
+    List<int> scores = List<int>.from(student["scores"]);
+    double average = scores.reduce((sum, score) => sum + score) / scores.length;
+    studentAverages[name] = double.parse(average.toStringAsFixed(2));
+  }
+  var sortedAverages = Map.fromEntries(
+      studentAverages.entries.toList()
+        ..sort((a, b) => b.value.compareTo(a.value))
+  );
+  print("{");
+  sortedAverages.forEach((name, average) {
+    print('  "$name": $average,');
+  });
+  print("}");
 }
 
 
