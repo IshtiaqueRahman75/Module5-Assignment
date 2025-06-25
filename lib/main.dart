@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 // a) Abstract class Vehicle
 abstract class Vehicle {
   int _speed = 0; // c) Encapsulated variable
